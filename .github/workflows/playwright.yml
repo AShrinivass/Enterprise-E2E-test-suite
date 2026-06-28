@@ -1,0 +1,38 @@
+name: Playwright E2E & API CI Pipeline
+# Trigger this workflow on pushes or pull requests to the main/master branches
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  playwright-tests:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    # Tell GitHub to run all steps INSIDE the official Playwright Docker container
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-jammy # Matches your project's Playwright version
+    steps:
+    # 1. Download your project code from GitHub into the container
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    # 2. Setup Node.js in the container and cache npm packages for faster runs
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+    # 3. Clean install your project dependencies (from package-lock.json)
+    - name: Install dependencies
+      run: npm ci
+    # 4. Run the Playwright test suite (runs both E2E UI and API tests)
+    - name: Run Playwright tests
+      run: npx playwright test
+    # 5. Automatically upload the HTML Test Report if any test fails
+    - name: Upload Playwright HTML Report
+      uses: actions/upload-artifact@v4
+      if: always() # Runs even if tests fail
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 7
