@@ -39,6 +39,6 @@ test('e2e checkout', async({page}) => {
     const paymentProcess = new AddPaymentDeets(page)
     await paymentProcess.addPaymentinfo('Shrinivas', '123456789012', '808', '06', '2026')
     await expect(page.locator('.title.text-center')).toHaveText('Order Placed!')    
-    await page.getByRole('link', {name:'Continue'}).click()
+    await selectProdcut.goto()
     await expect(page.getByAltText('Website for automation practice')).toBeVisible()
 })    
