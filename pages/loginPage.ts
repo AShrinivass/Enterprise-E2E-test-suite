@@ -30,7 +30,7 @@ export class LoginPage {
     }
 
     async goto(){
-        await this.page.goto('https://automationexercise.com/login')
+        await this.page.goto('https://automationexercise.com/login', {waitUntil: "domcontentloaded"})
     }
 
     //login function

@@ -15,7 +15,7 @@ test('e2e checkout', async({page}) => {
     const deleteButtons = page.locator('.cart_quantity_delete')
 
     while(await deleteButtons.count() > 0){
-        await deleteButtons.click()
+        await deleteButtons.first().click()
         await page.waitForTimeout(500)
     }
 
