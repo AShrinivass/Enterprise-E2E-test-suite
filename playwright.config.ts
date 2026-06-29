@@ -43,9 +43,10 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/user.json', 
+        // Storage state is REMOVED from here.
       },
-        dependencies: ['setup'], 
+      dependencies: ['setup'], // Still waits for setup to finish
+      testIgnore: '**/auth.spec.ts', // Tells chromium to ignore running the auth setup file again
     },
     // {
     //   name: 'firefox',
