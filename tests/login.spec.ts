@@ -8,7 +8,7 @@ test.describe('positive login scenarios', ()=>{
 })
 test('login successfully', async({page}) =>{
   const loginPage = new LoginPage(page)
-  await loginPage.login('shrnvs_1782396505131@email.com','Welcome69')
+  await loginPage.login('shrnvs_1782545464874@email.com','Welcome69')
 
   const loggedInUser = page.locator('.nav.navbar-nav li').filter({hasText: "Logged in as"})
   await expect(loggedInUser).toContainText('shrunuvas')
