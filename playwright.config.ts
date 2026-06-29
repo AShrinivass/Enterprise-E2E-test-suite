@@ -31,6 +31,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    screenshot: 'only-on-failure',
   },
 
   /* Configure projects for major browsers */
@@ -47,6 +48,7 @@ export default defineConfig({
       },
       dependencies: ['setup'], // Still waits for setup to finish
       testIgnore: '**/auth.spec.ts', // Tells chromium to ignore running the auth setup file again
+      
     },
     // {
     //   name: 'firefox',
