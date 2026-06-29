@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
 
-test.describe.skip('positive login scenarios', ()=>{
+test.describe('positive login scenarios', ()=>{
   test.beforeEach(async ({page}) => {
   await page.goto('https://automationexercise.com/login', {waitUntil: 'domcontentloaded'})
   await expect(page.locator('.login-form h2')).toContainText('Login to your account')
